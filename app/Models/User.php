@@ -42,4 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    static public function getEmailSingle(string $email)
+    {
+        return self::select(['*'])->where('email', $email)->first();
+    }
+
+    static public function getRememberTokenSingle(string $rememberToken)
+    {
+        return self::select(['*'])->where('remember_token', $rememberToken)->first();
+    }
 }
