@@ -20,9 +20,4 @@ class DashboardController extends Controller
             return view('parent.dashboard', $data);
         }
     }
-
-    public function list()
-    {
-        return view('admin.admin.list');
-    }
 }

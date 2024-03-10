@@ -45,11 +45,21 @@ class User extends Authenticatable
 
     static public function getEmailSingle(string $email)
     {
-        return self::select(['*'])->where('email', $email)->first();
+        return self::select(['*'])->where('email', $email)->where('is_deleted', 0)->first();
     }
 
     static public function getRememberTokenSingle(string $rememberToken)
     {
-        return self::select(['*'])->where('remember_token', $rememberToken)->first();
+        return self::select(['*'])->where('remember_token', $rememberToken)->where('is_deleted', 0)->first();
+    }
+
+    static public function getAdmins()
+    {
+        return self::select(['*'])->where('user_type', 1)->where('is_deleted', 0)->orderBy('id','desc')->get();
+    }
+
+    static public function getSignleUserById(int $id)
+    {
+        return self::select(['*'])->where('id', $id)->where('is_deleted', 0)->first();
     }
 }

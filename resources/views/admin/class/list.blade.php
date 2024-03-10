@@ -7,10 +7,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Admin List</h1>
+                        <h1 class="m-0">Class List</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6" style="text-align: right;">
-                        <a href="{{ url('admin/admin/add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> New Admin</a>
+                        <a href="{{ url('admin/class/add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> New Class</a>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -30,22 +30,24 @@
                                     <th>Sr. #</th>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Email</th>                                    
+                                    <th>Status</th>                                     
+                                    <th>Created By</th>                                   
                                     <th>Created Date</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($admin_list as $admin)    
+                                @foreach ($class_list as $class)    
                                 <tr>                   
                                     <td>{{ $loop->index+1 }}</td>              
-                                    <td>{{ $admin->id }}</td>
-                                    <td>{{ $admin->name }}</td>
-                                    <td>{{ $admin->email }}</td>                                    
-                                    <td>{{ date('d M Y h:ia', strtotime($admin->created_at. '+5 hours')) }}</td>
+                                    <td>{{ $class->id }}</td>
+                                    <td>{{ $class->name }}</td>
+                                    <td>{{ ($class->is_active == 1) ? 'Active' : 'In-active' }}</td>                                    
+                                    <td>{{ $class->created_by_name }}</td>
+                                    <td>{{ date('d M Y h:ia', strtotime($class->created_at. '+5 hours')) }}</td>
                                     <td>
-                                        <a href="{{ url('admin/admin/edit/'.$admin->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
-                                        <a href="{{ url('admin/admin/delete/'.$admin->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                        <a href="{{ url('admin/class/edit/'.$class->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ url('admin/class/delete/'.$class->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                                     </td>
                                     </td>
                                 </tr>
