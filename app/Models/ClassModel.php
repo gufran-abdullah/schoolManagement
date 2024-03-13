@@ -23,4 +23,14 @@ class ClassModel extends Model
     {
         return self::select(['*'])->where('id', $id)->where('is_deleted', 0)->first();
     }
+
+    static public function getActiveClasses()
+    {
+        return self::select(['classes.*', 'u.name as created_by_name'])
+            ->join('users AS u', 'u.id', '=', 'classes.created_by')
+            ->where('classes.is_deleted', 0)
+            ->where('classes.is_active', 1)
+            ->orderBy('classes.name','asc')
+            ->get();
+    }
 }

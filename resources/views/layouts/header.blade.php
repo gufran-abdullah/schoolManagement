@@ -135,17 +135,34 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ url('admin/admin/list') }}" class="nav-link @if(Request::segment(2) == 'admin') active @endif">
-                        <i class="nav-icon fas fa-table"></i>
+                        <i class="far fa-circle nav-icon"></i>
                         <p>
                             View All Admins
                         </p>
                     </a>
                 </li>
+                <li class="nav-header">SCHOOL MANAGEMENT</li>
                 <li class="nav-item">
                     <a href="{{ url('admin/class/list') }}" class="nav-link @if(Request::segment(2) == 'class') active @endif">
-                        <i class="nav-icon fas fa-table"></i>
+                        <i class="far fa-circle nav-icon"></i>
                         <p>
                             View All Classes
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/subject/list') }}" class="nav-link @if(Request::segment(2) == 'subject') active @endif">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>
+                            View All Subjects
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/assign-subject/list') }}" class="nav-link @if(Request::segment(2) == 'assign-subject') active @endif">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>
+                            Assign Subjects
                         </p>
                     </a>
                 </li>
