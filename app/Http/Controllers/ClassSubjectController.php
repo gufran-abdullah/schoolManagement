@@ -59,6 +59,7 @@ class ClassSubjectController extends Controller
             $subject = ClassSubject::getSignleAssignedSubjectById($id);
             if (!empty($subject)) {
                 $data['subject'] = $subject;
+                $data['assigned_subjects'] = ClassSubject::getAssignedSubjectsByClassId($subject->class_id);
                 $data['class_data'] = ClassModel::getActiveClasses();
                 $data['subject_data'] = Subject::getActiveSubjects();
                 return view('admin.assign_subject.edit', $data);
@@ -90,6 +91,50 @@ class ClassSubjectController extends Controller
                 }
             }
             return redirect('admin/assign-subject/list')->with('success', 'Subjects updated successfully');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function edit_single(int $id)
+    {
+        $data['header_title'] = 'Update Assigned Subject';
+        try {
+            $subject = ClassSubject::getSignleAssignedSubjectById($id);
+            if (!empty($subject)) {
+                $data['subject'] = $subject;
+                $data['class_data'] = ClassModel::getActiveClasses();
+                $data['subject_data'] = Subject::getActiveSubjects();
+                return view('admin.assign_subject.edit_single', $data);
+            }
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function update_single(int $id, Request $request)
+    {
+        try {
+            $data = $request->all();
+            $alreadyAssigned = ClassSubject::getAlreadyAssignedSubjects($data['class_id'], $data['subject_id']);
+            $operation = $message = "";
+            if (!empty($alreadyAssigned)) {
+                $alreadyAssigned->is_active = $data['status'];
+                $alreadyAssigned->save();
+                $operation = 'success';
+                $message = 'Status updated successfully!';
+            } else {
+                $assignSubject = ClassSubject::getSignleAssignedSubjectById($id);
+                $assignSubject->class_id = $data['class_id'];
+                $assignSubject->subject_id = $data['subject_id'];
+                $assignSubject->is_active = $data['status'];
+                $assignSubject->created_by = Auth::user()->id;
+                $assignSubject->save();
+                $operation = 'success';
+                $message = 'Subject assigned to class successfully!';
+            }
+              
+            return redirect('admin/assign-subject/list')->with($operation, $message);
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }

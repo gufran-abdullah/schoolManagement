@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Assign Subject</h1>
+                        <h1>Change Password</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -23,31 +23,15 @@
                         <div class="card card-primary">
                             @include('message')
                             <!-- form start -->
-                            <form action="{{ url('admin/assign-subject/add') }}" method="post">
+                            <form action="" method="post">
                                 {{ csrf_field() }}
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Class</label>
-                                        <select name="class_id" class="form-control" required>
-                                            <option value="">---Select One---</option>
-                                            @foreach ($class_data as $class)
-                                                <option value="{{ $class->id }}">{{ $class->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                        <label>Current Password</label>
+                                        <input type="password" class="form-control" name="current_password" placeholder="Current Password" required>
                                     <div class="form-group">
-                                        <label>Subject</label><br>
-                                        @foreach ($subject_data as $subject)
-                                            <input type="checkbox" value="{{ $subject->id }}" name="subject_id[]"> {{ $subject->name }}<br>
-                                        @endforeach
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Status</label>
-                                        <select name="status" class="form-control" required>
-                                            <option value="">---Select One---</option>
-                                            <option value="0">In-active</option>
-                                            <option value="1">Active</option>
-                                        </select>
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" name="new_password" placeholder="New Password" required>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

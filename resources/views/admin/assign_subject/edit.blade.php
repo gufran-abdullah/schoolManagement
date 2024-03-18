@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Update Assigned Subject</h1>
+                        <h1>Update Assigned Subjects</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -36,12 +36,20 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Subject</label>
-                                        <select name="subject_id[]" class="form-control" multiple required>
-                                            @foreach ($subject_data as $subjectData)
-                                                <option value="{{ $subjectData->id }}" {{ ($subjectData->id == $subject->subject_id) ? 'selected' : '' }}>{{ $subjectData->name }}</option>
+                                        <label>Subject</label><br>
+                                        @foreach ($subject_data as $subjectData)
+                                            @php
+                                                $checked = "";
+                                            @endphp
+                                            @foreach ($assigned_subjects as $assigned)
+                                                @if ($assigned->subject_id == $subjectData->id)
+                                                    @php
+                                                        $checked = "checked";
+                                                    @endphp
+                                                @endif
                                             @endforeach
-                                        </select>
+                                            <input type="checkbox" name="subject_id[]" value="{{ $subjectData->id }}" {{ $checked }}> {{ $subjectData->name }}<br>
+                                        @endforeach
                                     </div>
                                     <div class="form-group">
                                         <label>Status</label>

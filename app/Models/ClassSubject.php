@@ -31,6 +31,11 @@ class ClassSubject extends Model
         return self::select(['*'])->where('id', $id)->where('is_deleted', 0)->first();
     }
 
+    static public function getAssignedSubjectsByClassId(int $classId)
+    {
+        return self::where('class_id', $classId)->where('is_deleted', 0)->get();
+    }
+
     static public function deleteSubjectsByClassId(int $classId)
     {
         return self::where('class_id', $classId)->delete();

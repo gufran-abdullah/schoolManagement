@@ -50,7 +50,8 @@
                                     <td>{{ $subject->user_name }}</td>
                                     <td>{{ date('d M Y h:ia', strtotime($subject->created_at. '+5 hours')) }}</td>
                                     <td>
-                                        <a href="{{ url('admin/assign-subject/edit/'.$subject->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ url('admin/assign-subject/edit/'.$subject->id) }}" class="btn btn-primary btn-sm" title="Bulk subjects assign"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ url('admin/assign-subject/edit-single/'.$subject->id) }}" class="btn btn-info btn-sm" title="Single subject update"><i class="fas fa-edit"></i></a>
                                         <a href="{{ url('admin/assign-subject/delete/'.$subject->id) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                                     </td>
                                     </td>
