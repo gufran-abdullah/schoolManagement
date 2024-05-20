@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return self::select(['*'])->where('id', $id)->where('is_deleted', 0)->first();
     }
+
+    static public function getStudents()
+    {
+        return self::select(['*'])->where('user_type', 3)->where('is_deleted', 0)->orderBy('id','desc')->get();
+    }
 }

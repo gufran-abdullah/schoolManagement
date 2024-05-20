@@ -105,7 +105,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a class="brand-link text-center">
-        <span class="brand-text font-weight-light">School Management System</span>
+        <span class="brand-text font-weight-light">School Management</span>
     </a>
 
     <!-- Sidebar -->
@@ -141,14 +141,6 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ url('admin/admin/list') }}" class="nav-link @if(Request::segment(2) == 'admin') active @endif">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>
-                            View All Admins
-                        </p>
-                    </a>
-                </li>
                 <li class="nav-header">SCHOOL MANAGEMENT</li>
                 <li class="nav-item">
                     <a href="{{ url('admin/class/list') }}" class="nav-link @if(Request::segment(2) == 'class') active @endif">
@@ -175,6 +167,14 @@
                     </a>
                 </li>
                 <li class="nav-header">PERSONS MANAGEMENT</li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/admin/list') }}" class="nav-link @if(Request::segment(2) == 'admin') active @endif">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>
+                            View All Admins
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="{{ url('admin/student/list') }}" class="nav-link @if(Request::segment(2) == 'student') active @endif">
                         <i class="far fa-circle nav-icon"></i>
